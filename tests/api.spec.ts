@@ -76,7 +76,6 @@ test('put order with correct id and data should receive code 200', async ({ requ
     headers: requestHeaders,
   })
 
-
   console.log('response status:', response.status())
   console.log('response body:', await response.json())
   expect(response.status()).toBe(StatusCodes.OK)
