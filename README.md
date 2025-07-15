@@ -1,4 +1,4 @@
-# ✅ API Test Checklist
+# ✅ API Test Checklist (HomeWork #9)
 
 | #  | Endpoint                        | Method  | Scenario Description                           | Type        | Expected Status Code | Status |
 |----|---------------------------------|---------|------------------------------------------------|-------------|----------------------|--------|
@@ -10,3 +10,12 @@
 | 6  | /test-orders/999                | PUT     | Update non-existing order                      | Negative    | 400 Bad Request      | ✅     |
 | 7  | /test-orders/1                  | DELETE  | Delete existing order                          | Positive    | 204 NO_CONTENT       | ✅     |
 | 8  | /test-orders/999                | DELETE  | Delete non-existing order                      | Negative    | 400 Bad Request      | ✅     |
+
+
+# ✅ Checklist API Test Coverage (HomeWork #10)
+
+| №  | Endpoint                                        | Expected Status Code |  Decision              |
+|----|-------------------------------------------------|----------------------|------------------------|
+| 1  | High risk client (e.g. low age or bad profile)  |          400         |  error (rejected)      |
+| 1  | Employed, medium income and average profile     |          200         |  positive, Medium Risk |
+| 1  | Employed, good income, low loan amount          |          200         |  positive, Low Risk    |
