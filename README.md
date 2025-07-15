@@ -14,8 +14,8 @@
 
 # ✅ Checklist API Test Coverage (HomeWork #10)
 
-| №  | Endpoint                                        | Expected Status Code |  Decision              |
-|----|-------------------------------------------------|----------------------|------------------------|
-| 1  | High risk client (e.g. low age or bad profile)  |          400         |  error (rejected)      |
-| 1  | Employed, medium income and average profile     |          200         |  positive, Medium Risk |
-| 1  | Employed, good income, low loan amount          |          200         |  positive, Low Risk    |
+| №  | Endpoint                                         | Expected Status Code |  Decision              | Status |
+|----|---------------------------------|----------------|----------------------|------------------------|--------|
+| 1  | High risk client (e.g. low age or bad profile)   |          400         |  error (rejected)      | ✅     |
+| 1  | Employed, medium income and average profile      |          200         |  positive, Medium Risk | ✅     |
+| 1  | Employed, good income, low loan amount           |          200         |  positive, Low Risk    | ✅     |
