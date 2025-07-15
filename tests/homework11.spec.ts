@@ -1,34 +1,29 @@
 import { test, expect } from '@playwright/test'
+import { LoginDto } from './dto/login-dto'
 import { StatusCodes } from 'http-status-codes'
-import { ChecklistDto } from './dto/order-dto'
 
-const baseURL = 'https://backend.tallinn-learning.ee/api/loan-calc/decision'
+const authURL = 'https://backend.tallinn-learning.ee/login/student'
+const jwtRegex = /^eyJhb[A-Za-z0-9-_]+\.[A-Za-z0-9-_]+\.[A-Za-z0-9-_]+$/
 
-test('should return NEGATIVE decision for high risk client', async ({ request }) => {
-  const requestBody = ChecklistDto.negativeDecision()
+test('Positive: when user credentials matching', async ({ request }) => {
+  const loginData = LoginDto.loginWithCorrectData()
 
-  const rawResponse = await request.post(baseURL, { data: requestBody })
-  expect.soft(rawResponse.status()).toBe(StatusCodes.BAD_REQUEST)
+  const response = await request.post(authURL, {
+    data: loginData,
+  })
+
+  const responseBody = await response.text()
+
+  expect(response.status()).toBe(StatusCodes.OK)
+  expect(responseBody).toMatch(jwtRegex)
 })
 
-test('should return POSITIVE decision with MEDIUM risk', async ({ request }) => {
-  const requestBody = ChecklistDto.positiveMediumRisk()
+test('Negative:  when user credentials ae wrong', async ({ request }) => {
+  const loginData = LoginDto.loginWithInCorrectData()
 
-  const rawResponse = await request.post(baseURL, {
-    data: requestBody,
+  const response = await request.post(authURL, {
+    data: loginData,
   })
-  console.log('response status:', rawResponse.status())
-  console.log('response body:', await rawResponse.json())
-  expect.soft(rawResponse.status()).toBe(StatusCodes.OK)
-})
 
-test('should return POSITIVE decision with LOW risk', async ({ request }) => {
-  const requestBody = ChecklistDto.positiveLowRisk()
-
-  const rawResponse = await request.post(baseURL, {
-    data: requestBody,
-  })
-  console.log('response status:', rawResponse.status())
-  console.log('response body:', await rawResponse.json())
-  expect.soft(rawResponse.status()).toBe(StatusCodes.OK)
+  expect(response.status()).toBe(StatusCodes.UNAUTHORIZED)
 })

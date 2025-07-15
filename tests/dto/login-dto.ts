@@ -12,4 +12,8 @@ export class LoginDto {
     const password = process.env.PASSWORD || ''
     return new LoginDto(username, password)
   }
+
+  static loginWithInCorrectData(): LoginDto {
+    return new LoginDto('wrong user', 'wrong password')
+  }
 }
