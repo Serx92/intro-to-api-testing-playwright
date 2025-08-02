@@ -7,13 +7,7 @@ export class LoginDto {
     this.password = password
   }
 
-  static loginWithCorrectData(): LoginDto {
-    const username = process.env.USER || ''
-    const password = process.env.PASSWORD || ''
-    return new LoginDto(username, password)
-  }
-
-  static loginWithInCorrectData(): LoginDto {
-    return new LoginDto('wrong user', 'wrong password')
+  static createdLogin(): LoginDto {
+    return new LoginDto(process.env.USER || '', process.env.PASSWORD || '')
   }
 }
