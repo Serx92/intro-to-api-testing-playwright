@@ -12,7 +12,7 @@ const comment = 'Please deliver ASAP'
 
 test('should authorize, create, get and delete order via API', async ({ request }) => {
   // Authorization
-  const loginData = new LoginDto('testautomvl', 'whs4s5qbYbfT2n')
+  const loginData = LoginDto.createdLogin()
   const loginResponse = await request.post(loginUrl, {
     data: loginData,
   })
